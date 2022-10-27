@@ -58,15 +58,37 @@ const quotes = [
 
 
 /***
- * `getRandomQuote` function
+ * `getRandomQuote` function:
+    accepts an array of objects as parameter
+    returns a random object from array
 ***/
 
+function getRandomQuote(quotes) {
 
+  //if no quotes in quotes array
+  if (quotes.length === 0) {
+    throw Error ("Array must have quotes.");
+  }
+
+  //create random number
+  let randomNumber = Math.ceil( Math.random() * quotes.length);
+
+  //check if prev random number is the same as current ran number so no repeat quotes
+
+  //get quote object
+  let quote = quotes[randomNumber];
+
+  //return quote object
+  return quote;
+}
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
+  
 
+}
 
 
 /***
