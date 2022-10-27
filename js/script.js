@@ -1,7 +1,7 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
-Displays a random Harry Potter quote when button is pressed
+Displays a random Harry Potter quote at 10 second intervals and when button is pressed
 ******************************************/
 
 // For assistance:
@@ -10,6 +10,11 @@ Displays a random Harry Potter quote when button is pressed
 
 /***
  * `quotes` array : array of Harry Potter quote objects
+ * property: quote [string]
+ * property: source [string]
+ * property: citation [string]
+ * property: year [number]
+ * property: tags [array]
 ***/
 const quotes = [
   {
@@ -59,8 +64,8 @@ const quotes = [
 
 /**
  * `getRandomQuote` function:
- * accepts an array of objects as parameter
- * returns a random object from array
+ *
+ * returns a random object from array of objects
  *
  * @param {array} quotes - array of objects
  * @return {object} quote object
@@ -86,8 +91,7 @@ function getRandomQuote(quotes) {
 
 /***
  * `randomBackgroundColor` function
- *
- * @return {object} returns rgb value
+ *  gets random rgb color and writes it to the browser's background
  *
  ***/
 
@@ -120,10 +124,10 @@ let prevQuote = '';
 
 /***
  * `printQuote` function
- * calls getRandomQuote() to get a random quote objects
+ * gets random quote object
  * checks for undefined properties
  * displays random quote to browser when button is pressed
- *
+ * changes background color with every new quote
  ***/
 
 function printQuote() {
@@ -148,7 +152,7 @@ function printQuote() {
   }
   if (randomQuote.tags != undefined) {
     for (var i = 0; i < randomQuote.tags.length; i++) {
-      htmlQuote += `<span> ${randomQuote.tags[i]} </span>`;
+      htmlQuote += `<span class="tags"> ${randomQuote.tags[i]} </span>`;
      //console.log(randomQuote.tags[i]);
     }
   }
