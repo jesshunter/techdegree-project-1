@@ -64,11 +64,10 @@ const quotes = [
 
 /**
  * `getRandomQuote` function:
- *
  * returns a random object from array of objects
  *
  * @param {array} quotes - array of objects
- * @return {object} quote object
+ * @return {object} random object from array
  **/
 
 function getRandomQuote(quotes) {
@@ -78,8 +77,7 @@ function getRandomQuote(quotes) {
     throw Error ("Array must have quotes.");
   }
   //create random number
-  let randomNumber = Math.ceil( Math.random() * quotes.length) - 1;
-
+  let randomNumber = Math.floor( Math.random() * quotes.length);
 
   //get quote object
   let quote = quotes[randomNumber];
@@ -87,7 +85,6 @@ function getRandomQuote(quotes) {
   //return quote object
   return quote;
 }
-
 
 /***
  * `randomBackgroundColor` function
@@ -97,10 +94,10 @@ function getRandomQuote(quotes) {
 
 function randomBackgroundColor(){
   //get three random rbg colors
-  let red = Math.ceil (Math.random() * 255 );
-  let green = Math.ceil (Math.random() * 255 );
-  let blue = Math.ceil (Math.random() * 255 );
-
+  let red = Math.floor (Math.random() * 255 );
+  let green = Math.floor (Math.random() * 255 );
+  let blue = Math.floor (Math.random() * 255 );
+  console.log (`${red} , ${green} , ${blue}`);
   //set background to random color
   document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
 }
@@ -113,6 +110,7 @@ function randomBackgroundColor(){
  * @param {function} printQuote - prints quote to browser
  *
  **/
+
 function autoDisplayQuote (printQuote){
   setInterval(printQuote, 10000);
 }
@@ -131,6 +129,7 @@ let prevQuote = '';
  ***/
 
 function printQuote() {
+
   //get quote object
   let randomQuote = '';
 
@@ -158,7 +157,7 @@ function printQuote() {
   }
   htmlQuote += "</p>";
 
-  //display string in browswer
+  //display string in browser
   document.getElementById('quote-box').innerHTML = htmlQuote;
 
   //display random backgroung color
