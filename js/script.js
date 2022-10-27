@@ -92,13 +92,18 @@ function printQuote() {
   let htmlQuote = `<p class="quote"> ${randomQuote.quote} </p><p class="source"> ${randomQuote.source}`;
 
   //check if object has citation and year values
-  if (randomQuote.citation != '') {
+  if (randomQuote.citation != undefined) {
     htmlQuote += `<span class="citation"> ${randomQuote.citation} </span>`;
   }
-  if (randomQuote.year != '') {
+  if (randomQuote.year != undefined) {
     htmlQuote += `<span class="year"> ${randomQuote.year} </span>`;
   }
-
+  if (randomQuote.tags != undefined) {
+    for (var i = 0; i < randomQuote.tags.length; i++) {
+      htmlQuote += `<span> ${randomQuote.tags[i]} </span>`;
+     //console.log(randomQuote.tags[i]);
+    }
+  }
   htmlQuote += "</p>";
 
   //display string in browswer
