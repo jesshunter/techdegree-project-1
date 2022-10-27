@@ -62,18 +62,15 @@ const quotes = [
     accepts an array of objects as parameter
     returns a random object from array
 ***/
-
 function getRandomQuote(quotes) {
 
   //if no quotes in quotes array
   if (quotes.length === 0) {
     throw Error ("Array must have quotes.");
   }
-
   //create random number
-  let randomNumber = Math.ceil( Math.random() * quotes.length);
+  let randomNumber = Math.ceil( Math.random() * quotes.length) - 1;
 
-  //check if prev random number is the same as current ran number so no repeat quotes
 
   //get quote object
   let quote = quotes[randomNumber];
@@ -82,12 +79,30 @@ function getRandomQuote(quotes) {
   return quote;
 }
 
+getRandomQuote(quotes);
 /***
  * `printQuote` function
 ***/
 function printQuote() {
-  
+  //get quote object
+  let randomQuote = getRandomQuote(quotes);
+  //check if prev random number is the same as current ran number so no repeat quotes
 
+  //build HTML string with quote object
+  let htmlQuote = `<p class="quote"> ${randomQuote.quote} </p><p class="source"> ${randomQuote.source}`;
+
+  //check if object has citation and year values
+  if (randomQuote.citation != '') {
+    htmlQuote += `<span class="citation"> ${randomQuote.citation} </span>`;
+  }
+  if (randomQuote.year != '') {
+    htmlQuote += `<span class="year"> ${randomQuote.year} </span>`;
+  }
+
+  htmlQuote += "</p>";
+
+  //display string in browswer
+  document.getElementById('quote-box').innerHTML = htmlQuote;
 }
 
 
