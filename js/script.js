@@ -101,6 +101,19 @@ function randomBackgroundColor(){
   document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
 }
 
+/**
+ * `autoDisplayQuote` function:
+ *
+ * displays a random quote to browser every 10 seconds
+ *
+ * @param {function} printQuote - prints quote to browser
+ *
+ **/
+function autoDisplayQuote (printQuote){
+  setInterval(printQuote, 10000);
+}
+
+
 
 //keeps track of prev quote to prevent back to back repeat quotes
 let prevQuote = '';
@@ -141,15 +154,15 @@ function printQuote() {
   }
   htmlQuote += "</p>";
 
-  //display random backgroung color
-
-
   //display string in browswer
   document.getElementById('quote-box').innerHTML = htmlQuote;
+
+  //display random backgroung color
   randomBackgroundColor();
   prevQuote = randomQuote;
 }
 
+autoDisplayQuote (printQuote);
 
 /***
  * click event listener for the print quote button
