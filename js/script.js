@@ -1,6 +1,7 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+Displays a random Harry Potter quote when button is pressed
 ******************************************/
 
 // For assistance:
@@ -8,7 +9,7 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /***
- * `quotes` array
+ * `quotes` array : array of Harry Potter quote objects
 ***/
 const quotes = [
   {
@@ -56,12 +57,15 @@ const quotes = [
 ];
 
 
-
-/***
+/**
  * `getRandomQuote` function:
-    accepts an array of objects as parameter
-    returns a random object from array
-***/
+ * accepts an array of objects as parameter
+ * returns a random object from array
+ *
+ * @param {array} quotes - array of objects
+ * @return {object} quote object
+ **/
+
 function getRandomQuote(quotes) {
 
   //if no quotes in quotes array
@@ -79,14 +83,45 @@ function getRandomQuote(quotes) {
   return quote;
 }
 
-getRandomQuote(quotes);
+
+/***
+ * `randomBackgroundColor` function
+ *
+ * @return {object} returns rgb value
+ *
+ ***/
+
+function randomBackgroundColor(){
+  //get three random rbg colors
+  let red = Math.ceil (Math.random() * 255 );
+  let green = Math.ceil (Math.random() * 255 );
+  let blue = Math.ceil (Math.random() * 255 );
+
+  //set background to random color
+  document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
+}
+
+
+//keeps track of prev quote to prevent back to back repeat quotes
+let prevQuote = '';
+
 /***
  * `printQuote` function
-***/
+ * calls getRandomQuote() to get a random quote objects
+ * checks for undefined properties
+ * displays random quote to browser when button is pressed
+ *
+ ***/
+
 function printQuote() {
   //get quote object
-  let randomQuote = getRandomQuote(quotes);
-  //check if prev random number is the same as current ran number so no repeat quotes
+  let randomQuote = '';
+
+  // check for back to back repeat quotes
+  do {
+    randomQuote = getRandomQuote(quotes);
+    console.log (randomQuote);
+  } while (randomQuote === prevQuote);
 
   //build HTML string with quote object
   let htmlQuote = `<p class="quote"> ${randomQuote.quote} </p><p class="source"> ${randomQuote.source}`;
@@ -106,8 +141,13 @@ function printQuote() {
   }
   htmlQuote += "</p>";
 
+  //display random backgroung color
+
+
   //display string in browswer
   document.getElementById('quote-box').innerHTML = htmlQuote;
+  randomBackgroundColor();
+  prevQuote = randomQuote;
 }
 
 
